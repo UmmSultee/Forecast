@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
     <title>Weather forecast</title>
     <link rel="stylesheet" href="src/styles.css">
 </head>
 <body>
     <div class="container">
-        <form>
+        <form id="form-input">
             <input type="search" placeholder="Enter a city" id="search-input">
             <input type="submit" value="search" id="search-button"> 
         </form>
@@ -17,14 +18,18 @@
             <div class="main">
                 <div class="city">
 
-                <h1>
+                <h1 id="current-city">
                 
                     Paris
             
                 </h1>
 
                 <p>
-                    Saturday 17:29, clear sky
+                    <span id="time">Saturday 17:29</span>,
+                    <span id="description">clear sky</span><br>
+                    <span>Humidity: <strong id="humidity"></strong></span>,
+                    <span>Wind: <strong id="wind"></strong></span>
+                     
                 </p>
        
 
@@ -33,9 +38,9 @@
                 <div class="temperature-info">
                     <h1>
 
-                        <span class="icon">🌕</span>
-                        <span class="temperature">7</span>
-                        <span class="unit">°C</span>
+                        <span id="icon">🌕</span>
+                        <span id="temperature">7</span>
+                        <span id="unit">°C</span>
                     </h1>
                 </div>
 
@@ -55,5 +60,6 @@
 
         </footer>
     </div>
+    <script src="src/script.js"></script>
 </body>
 </html>
