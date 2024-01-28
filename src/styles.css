@@ -26,12 +26,37 @@ main{
      background: radial-gradient(592px at 48.2% 50%, rgba(255, 255, 249, 0.6) 0%, rgb(160, 199, 254) 74.6%);
      border-radius: 6px;
      margin-left: 5px auto;
-     padding: 15px 30px;
+     padding: 15px 100px;
      border: none;
      color:  #ffb5b;
 
 }
 
 #search-button{
-    colo
+    background:  #ffcbcb;
+    margin: 10px auto;
+    padding: 13px 30px;
+    border-radius: 6px;
+    border: none;
+    font-size: 16px;
+    color: #407088;
+}
+#search-button:hover{
+    background: #ffb5b5;
+    color: #132743;
+    cursor: pointer;
+
+}
+
+a{
+    color: #ffb5b5;
+}
+a:hover{
+    color: #f76b8a
+}
+
+footer{
+    border-top: 1px solid #e4f1fe;
+    margin: 15px;
+    text-align: center;
 }
