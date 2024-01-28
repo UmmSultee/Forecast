@@ -65,5 +65,50 @@ function searchInputSubmit(event) {
     
 }
 
+function forecastDay(timestamp) {
+    let date = new Date(timestamp* 1000);
+    let days = [
+        "Sun",
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thurs",
+        "Fri",
+        "sat",
+    ];
+    return `days[date.getDay()]`;
+}
+
+function foreCast(response){
+    let forecastElement = document.querySelector(".forecast")
+    forecastHtml ="";
+
+    response.data.dailyforEach(function (day, index) {
+        if (index < 6) {
+            forecastHtml = forecastHtml + 
+            `<div class="forecast-date">
+            <div class="forecast-day>${forecastDay(day.time)}</div"
+            <img src="${day.condition.icon_url}" class="forecast-icon" />
+            <div class="forecast-temperatures">
+            <div class="forecast-temperature">
+              <strong>${Math.round(day.temperature.maximum)}º</strong>
+            </div>
+            <div class="weather-forecast-temperature">${Math.round(
+              day.temperature.minimum
+            )}º</div>
+          </div>
+            </div
+            `;
+
+        }
+    });
+
+    forecastElement.innerHTML = forecastHtml;
+}
+        
+    
+
+
+
 let formInput = document.querySelector("#form-input");
-formInput.addEventListener("submit", searchInputSubmit)
+formInput.addEventListener("submit", searchInputSubmit);
