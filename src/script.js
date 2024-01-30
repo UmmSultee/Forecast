@@ -17,6 +17,7 @@ function refreshWeather(response) {
     windElement.innerHTML = `${response.data.wind.speed}km/h`;
     iconElement.innerHTML = `<img src="${response.data.condition.icon_url}"/>`;
     temperatureElement.innerHTML = Math.round(temperature);
+    getForecast(response.data.city)
 
 
 
@@ -90,12 +91,13 @@ function getForecast(city) {
 }
 
 function weatherForecast(response) {
-    let forecast = document.querySelector(".forecast");
+    
     forecastFormat = "";
     response.data.daily.forEach(function (day, index) {
 
-        if (index < 6) {
-            forecastFormat = forecastFormat = `
+        if (index < 5) {
+            forecastFormat = forecastFormat + 
+            `
             <div class="weather-forecast-day">
         <div class="weather-forecast-date">${forecastDay(day.time)}</div>
         <img src="${day.condition.icon_url}" class="weather-forecast-icon" />
@@ -103,7 +105,7 @@ function weatherForecast(response) {
           <div class="weather-forecast-temperature">
             <strong>${Math.round(day.temperature.maximum)}º</strong>
           </div>
-          <div class="weather-forecast-temperature">${Math.round(
+          <div class="weather-forecast-temperature" id="min">${Math.round(
             day.temperature.minimum
           )}º</div>
         </div>
@@ -112,7 +114,7 @@ function weatherForecast(response) {
 
       
 }
-
+let forecast = document.querySelector(".forecast");
 forecast.innerHTML = forecastFormat;
 
         
