@@ -57,6 +57,8 @@ function getCity(city) {
     axios.get(apiUrl).then(refreshWeather);
 }
 
+getCity("Kano");
+
 function searchInputSubmit(event) {
     event.preventDefault();
     let searchInputElement = document.querySelector("#search-input");

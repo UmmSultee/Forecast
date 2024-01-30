@@ -47,16 +47,21 @@ main{
     cursor: pointer;
 
 }
+
 #temperature{
-    font-weight: 600;
+    font-weight: bold;
     font-size: 88px;
+    
 }
 #unit{
     position: absolute;
+    margin-top: 6px;
+    font-size: 28px;
 }
 
 #icon{
-    text-align: center;
+    
+    
 }
 
 a{
