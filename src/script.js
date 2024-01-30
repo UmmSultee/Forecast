@@ -68,7 +68,7 @@ function searchInputSubmit(event) {
 }
 
 function forecastDay(timestamp) {
-    let date = new Date(timestamp* 1000);
+    let date = new Date(timestamp * 1000);
     let days = [
         "Sun",
         "Mon",
@@ -79,34 +79,44 @@ function forecastDay(timestamp) {
         "sat",
     ];
 
-    return `days[date.getDay()]`
+    return days[date.getDay()];
 }
 
-function foreCast(response){
-    let forecastElement = document.querySelector(".forecast")
-    forecastHtml ="";
+function getForecast(city) {
+    let apiKey = "0e07d3f80c4414708ec095toac29b8a4"
+    let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`
 
+    axios.get(apiUrl).then(weatherForecast);
+}
+
+function weatherForecast(response) {
+    let forecast = document.querySelector(".forecast");
+    forecastFormat = "";
     response.data.daily.forEach(function (day, index) {
+
         if (index < 6) {
-            forecastHtml = forecastHtml + 
-            `<div class="forecast-date">
-            <div class="forecast-day>${forecastDay(day.time)}</div"
-            <img src="${day.condition.icon_url}" class="forecast-icon" />
-            <div class="forecast-temperatures">
-            <div class="forecast-temperature">
-              <strong>${Math.round(day.temperature.maximum)}º</strong>
-            </div>
-            <div class="weather-forecast-temperature">${Math.round(
-              day.temperature.minimum
-            )}º</div>
+            forecastFormat = forecastFormat = `
+            <div class="weather-forecast-day">
+        <div class="weather-forecast-date">${forecastDay(day.time)}</div>
+        <img src="${day.condition.icon_url}" class="weather-forecast-icon" />
+        <div class="weather-forecast-temperatures">
+          <div class="weather-forecast-temperature">
+            <strong>${Math.round(day.temperature.maximum)}º</strong>
           </div>
-            </div
-            `;
+          <div class="weather-forecast-temperature">${Math.round(
+            day.temperature.minimum
+          )}º</div>
+        </div>
+      </div>
+    `;
 
-        }
-    });
+      
+}
 
-    forecastElement.innerHTML = forecastHtml;
+forecast.innerHTML = forecastFormat;
+
+        
+    })
 }
         
     
