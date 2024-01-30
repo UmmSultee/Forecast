@@ -6,12 +6,12 @@ function refreshWeather(response) {
     let windElement = document.querySelector("#wind");
     let iconElement = document.querySelector("#icon");
     let temperatureElement = document.querySelector("#temperature");
-    let temperature = response.data.temperature;
+    let temperature = response.data.temperature.current;
     let date = new Date(response.data.time *1000);
     
 
     cityElement.innerHTML = response.data.city;
-    timeElement.innerHTML = formatDate;
+    timeElement.innerHTML = formatDate(date);
     descriptionElement.innerHTML = response.data.condition.description;
     humidityElement.innerHTML = `${response.data.temperature.humidity}%`;
     windElement.innerHTML = `${response.data.wind.speed}km/h`;
@@ -47,7 +47,7 @@ function formatDate(date) {
     }
     return `${day} ${hours}:${minutes}`;
     
-};
+}
 
 function getCity(city) {
     let apiKey = "0e07d3f80c4414708ec095toac29b8a4";
@@ -76,14 +76,15 @@ function forecastDay(timestamp) {
         "Fri",
         "sat",
     ];
-    return `days[date.getDay()]`;
+
+    return `days[date.getDay()]`
 }
 
 function foreCast(response){
     let forecastElement = document.querySelector(".forecast")
     forecastHtml ="";
 
-    response.data.dailyforEach(function (day, index) {
+    response.data.daily.forEach(function (day, index) {
         if (index < 6) {
             forecastHtml = forecastHtml + 
             `<div class="forecast-date">
